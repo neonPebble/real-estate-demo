@@ -80,10 +80,10 @@ function App() {
             </div>
           </div>
           <div className=" flex justify-center items-center space-x-2">
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-800 border-2">
+            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
               Login
             </button>
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-800 border-2">
+            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
               Sign Up
             </button>
           </div>
