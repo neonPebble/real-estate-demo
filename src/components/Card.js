@@ -18,7 +18,7 @@ export default function Card(props) {
         </div>
         <div className="text-xl pl-2">{propObj["Name"]}</div>
         <div className="text-center text-sm">{propObj.address}</div>
-        <div className="text-sm flex space-x-1">
+        <div className="text-sm flex space-x-1 px-2 justify-center items-center">
           <div className="text-center">{propObj.beds}Beds</div>
           <div className="text-center">{propObj.bathrooms} Bathrooms</div>
           <div className="text-center">
