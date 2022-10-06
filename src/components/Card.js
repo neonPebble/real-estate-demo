@@ -1,13 +1,14 @@
 import React from "react";
+import * as allPics from "./picdata";
 export default function Card(props) {
   const { propObj } = props;
   return (
-    <div className="rounded-sm shadow-lg">
+    <div className="rounded-sm shadow-lg max-w-min">
       <div className="rounded-sm">
         <img
-          src={require(propObj.image).default}
+          src={allPics["House1"]}
           alt={propObj.name}
-          className="object-cover h-48 w-96"
+          className="object-cover h-[360] w-[640px]"
         />
       </div>
       <div className="space-y-1">

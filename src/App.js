@@ -42,7 +42,7 @@ function App() {
 
   let displayedProps = filteredDataSet.map((element) => {
     return (
-      <div key={element.name}>
+      <div key={element.name} className="max-w-min">
         <Card propObj={element} />
       </div>
     );
@@ -60,9 +60,8 @@ function App() {
   return (
     <div className="App">
       <div className=" w-full min-h-full bg-slate-100">
-        <p className="text-sky-400">Real Estate App</p>
         <div className="px-3 py-2">
-          <div className=" space-x-3">
+          <div className=" space-x-3 flex">
             <div className="px-2 py-1 text-center">Estatery</div>
             <div className="px-2 py-1 text-center text-violet-900 bg-violet-400">
               Rent
@@ -111,7 +110,7 @@ function App() {
             <option value="3000-4000">3000-4000</option>
           </select>
         </div>
-        <div className=" py-5 px-5 space-x-3 space-y-3 flex-wrap">
+        <div className=" py-5 px-5 space-x-3 space-y-3 flex flex-wrap">
           {displayedProps}
         </div>
       </div>
