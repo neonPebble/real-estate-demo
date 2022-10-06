@@ -4,8 +4,8 @@ export default function Card(props) {
   const { propObj } = props;
   const ImgSrc = propObj.image;
   return (
-    <div className="rounded-sm shadow-lg">
-      <div className="rounded-sm">
+    <div className="rounded-md shadow-lg">
+      <div className="rounded-md">
         <img src={ImgSrc} alt={propObj.name} className=" h-[120] w-[240px]" />
       </div>
       <div className="space-y-1">

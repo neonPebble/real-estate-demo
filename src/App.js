@@ -42,7 +42,7 @@ function App() {
 
   let displayedProps = filteredDataSet.map((element) => {
     return (
-      <div key={element.name} className="">
+      <div key={element.name} className="rounded-md">
         <Card propObj={element} />
       </div>
     );
