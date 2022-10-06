@@ -12,7 +12,7 @@ export default function Card(props) {
           className=" h-[120] w-[240px] rounded-md"
         />
       </div>
-      <div className="space-y-1">
+      <div className="space-y-1 py-1">
         <div>
           <span className="text-lg pl-2">${propObj.price}</span>/month
         </div>
