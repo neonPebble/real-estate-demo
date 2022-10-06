@@ -6,7 +6,11 @@ export default function Card(props) {
   return (
     <div className="rounded-md shadow-lg">
       <div className="rounded-md">
-        <img src={ImgSrc} alt={propObj.name} className=" h-[120] w-[240px]" />
+        <img
+          src={ImgSrc}
+          alt={propObj.name}
+          className=" h-[120] w-[240px] rounded-md"
+        />
       </div>
       <div className="space-y-1">
         <div>
