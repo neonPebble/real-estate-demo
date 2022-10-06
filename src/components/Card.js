@@ -1,21 +1,18 @@
 import React from "react";
-import * as allPics from "./picdata";
+
 export default function Card(props) {
   const { propObj } = props;
+  const ImgSrc = propObj.image;
   return (
-    <div className="rounded-sm shadow-lg max-w-min">
+    <div className="rounded-sm shadow-lg">
       <div className="rounded-sm">
-        <img
-          src={allPics["House1"]}
-          alt={propObj.name}
-          className="object-cover h-[360] w-[640px]"
-        />
+        <img src={ImgSrc} alt={propObj.name} className=" h-[120] w-[240px]" />
       </div>
       <div className="space-y-1">
         <div>
           <span className="text-lg pl-2">${propObj.price}</span>/month
         </div>
-        <div className="text-xl pl-2">{propObj.name}</div>
+        <div className="text-xl pl-2">{propObj["Name"]}</div>
         <div className="text-center text-sm">{propObj.address}</div>
         <div className="text-sm flex space-x-1">
           <div className="text-center">{propObj.beds}Beds</div>
