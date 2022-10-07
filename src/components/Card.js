@@ -11,7 +11,7 @@ export default function Card(props) {
         className=" rounded-md object-cover"
       /> */}
       <div
-        className="bg-cover h-40 rounded-md"
+        className="bg-cover h-40 rounded-t-md"
         style={{ backgroundImage: `url(${ImgSrc})` }}
       />
       <div className="space-y-1 py-1">
