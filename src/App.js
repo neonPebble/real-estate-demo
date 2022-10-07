@@ -41,11 +41,7 @@ function App() {
   });
 
   let displayedProps = filteredDataSet.map((element) => {
-    return (
-      <div key={element.name} className="rounded-md">
-        <Card propObj={element} />
-      </div>
-    );
+    return <Card propObj={element} key={element["Name"]} />;
   });
 
   function handleTypeChange(event) {
@@ -110,7 +106,8 @@ function App() {
             <option value="3000-4000">3000-4000</option>
           </select>
         </div>
-        <div className=" py-5 px-5 space-x-3 space-y-3 flex flex-wrap">
+
+        <div className=" py-5 px-5 space-x-3 space-y-3 flex flex-wrap box-border">
           {displayedProps}
         </div>
       </div>
