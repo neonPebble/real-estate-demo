@@ -107,7 +107,7 @@ function App() {
           </select>
         </div>
 
-        <div className=" py-5 px-5 space-x-3 space-y-3 flex flex-wrap box-border">
+        <div className=" py-[5vw] px-[4vw] gap-5 flex flex-wrap box-border">
           {displayedProps}
         </div>
       </div>
