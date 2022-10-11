@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
+.Home, .Sell, .Error {
   text-align: center;
 }
 
