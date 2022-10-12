@@ -13,10 +13,10 @@ export default function Sell() {
   const [propList, setpropList] = useState([]);
 
   const onSubmit = (data) => {
-    console.log(data);
     const imageReader = new FileReader();
     imageReader.addEventListener("load", () => {
       data.image = imageReader.result;
+      console.log(data.image);
       setpropList((prevList) => {
         let newList = prevList.slice();
         newList.push(data);
@@ -37,17 +37,17 @@ export default function Sell() {
               return <Card propObj={element} key={element["Name"]} />;
             })}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center pb-5">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col space-y-1 w-30"
+              className="flex flex-col space-y-1 w-30 py-2 shadow-lg"
             >
               <div className="space-x-2">
                 <label htmlFor="name">Name</label>
                 <input
                   {...register("Name", { required: true })}
                   id="name"
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                 />
               </div>
               {errors["Name"] && (
@@ -68,9 +68,10 @@ export default function Sell() {
               <div className="space-x-2">
                 <label htmlFor="price">Price</label>
                 <input
+                  type="Number"
                   {...register("price", { required: true })}
                   id="price"
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                 />
               </div>
               {errors.price && (
@@ -79,8 +80,9 @@ export default function Sell() {
               <div className="space-x-2">
                 <label htmlFor="noofbeds">No of beds</label>
                 <input
+                  type="Number"
                   {...register("beds", { required: true })}
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                   id="noofbeds"
                 />
               </div>
@@ -92,8 +94,9 @@ export default function Sell() {
               <div className="space-x-2">
                 <label htmlFor="noofbathrooms">No of bathrooms</label>
                 <input
+                  type="Number"
                   {...register("bathrooms", { required: true })}
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                   id="noofbathrooms"
                 />
               </div>
@@ -105,8 +108,9 @@ export default function Sell() {
               <div className="space-x-2">
                 <label htmlFor="proplength">Length</label>{" "}
                 <input
+                  type="Number"
                   {...register("length", { required: true })}
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                   id="proplength"
                 />
               </div>
@@ -118,8 +122,9 @@ export default function Sell() {
               <div className="space-x-2">
                 <label htmlFor="propwidth">Width</label>
                 <input
+                  type="Number"
                   {...register("width", { required: true })}
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                   id="propwidth"
                 />
               </div>
@@ -130,7 +135,7 @@ export default function Sell() {
                 <label htmlFor="propaddress">Address</label>
                 <input
                   {...register("address", { required: true })}
-                  className="rounded-md"
+                  className="rounded-md text-center px-1"
                   id="propaddress"
                 />
               </div>
@@ -151,14 +156,16 @@ export default function Sell() {
               {errors.location && (
                 <span className="text-red-500">Location is required</span>
               )}
-              <div className="spacex-2">
+              <div className="spacex-2 flex justify-center">
                 <label htmlFor="ImageFile">Property Image</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  {...register("image", { required: true })}
-                  id="ImageFile"
-                />
+                <div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    {...register("image", { required: true })}
+                    id="ImageFile"
+                  />
+                </div>
               </div>
               {errors.image && (
                 <span className="text-red-500">Property Image is required</span>
@@ -166,7 +173,7 @@ export default function Sell() {
 
               <input
                 type="submit"
-                className="border-2 border-violet-600 hover:bg-violet-600 hover:text-white cursor-pointer rounded-md"
+                className="border-2 border-violet-600 hover:bg-violet-600 hover:text-white cursor-pointer rounded-md px-3 self-center"
               />
             </form>
           </div>
