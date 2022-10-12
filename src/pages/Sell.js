@@ -1,81 +1,156 @@
-import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import Navbar from "../components/Navbar";
+
 export default function Sell() {
-  const fileInputRef = useRef(null);
-  function submitHandler() {
-    console.log(fileInputRef.current.files[0]);
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="Sell">
       <div className="min-h-[100vh] w-full bg-slate-100">
-        <div className="px-6 py-2 flex place-content-between">
-          <div className=" space-x-3 flex">
-            <div className="px-2 py-1 text-center text-xl mr-4">Estatery</div>
-            <div
-              className={`px-2 py-1 text-center  hover:text-violet-900 hover:bg-violet-400 rounded-sm ${
-                window.location.pathname === "/"
-                  ? "text-violet-900 bg-violet-400"
-                  : ""
-              }`}
-            >
-              <a href="/">Rent</a>
-            </div>
-            <div
-              className={`px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm ${
-                window.location.pathname === "/buy"
-                  ? "text-violet-900 bg-violet-400"
-                  : ""
-              }`}
-            >
-              Buy
-            </div>
-            <div
-              className={`px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm ${
-                window.location.pathname === "/sell"
-                  ? "text-violet-900 bg-violet-400"
-                  : ""
-              }`}
-            >
-              <a href="/sell">Sell</a>
-            </div>
-            <div
-              className={`px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm ${
-                window.location.pathname === "/manage"
-                  ? "text-violet-900 bg-violet-400"
-                  : ""
-              }`}
-            >
-              Manage Property
-            </div>
-            <div
-              className={`px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm ${
-                window.location.pathname === "/resources"
-                  ? "text-violet-900 bg-violet-400"
-                  : ""
-              }`}
-            >
-              Resources
-            </div>
-          </div>
-          <div className=" flex justify-center items-center space-x-2">
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
-              Login
-            </button>
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
-              Sign Up
-            </button>
-          </div>
-        </div>
+        <Navbar />
         <div>
           <h1>Your Products</h1>
           <div className="py-[5vw] px-[4vw] gap-5 flex flex-wrap box-border"></div>
-          <div>
-            <input type="file" accept="image/*" ref={fileInputRef} />
-            <button
-              onClick={submitHandler}
-              className="border-2 border-green-500 hover:bg-green-400 hover:text-white px-2 py-1 rounded-md"
+          <div className="flex justify-center">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col space-y-1 w-30"
             >
-              Submit
-            </button>
+              <div className="space-x-2">
+                <label htmlFor="name">Name</label>
+                <input
+                  {...register("Name", { required: true })}
+                  id="name"
+                  className="rounded-md"
+                />
+              </div>
+              {errors["Name"] && (
+                <span className="text-red-500">Property name is required</span>
+              )}
+              <div className="space-x-2">
+                <select {...register("type", { required: true })}>
+                  <option value="">--Choose Property Type--</option>
+                  <option value="Houses">Houses</option>
+                  <option value="Condos">Condos</option>
+                  <option value="Townhouses">TownHouses</option>
+                  <option value="Multifamily">Multifamily</option>
+                </select>
+              </div>
+              {errors.type && (
+                <span className="text-red-500">Property type is required</span>
+              )}
+              <div className="space-x-2">
+                <label htmlFor="price">Price</label>
+                <input
+                  {...register("price", { required: true })}
+                  id="price"
+                  className="rounded-md"
+                />
+              </div>
+              {errors.price && (
+                <span className="text-red-500">Property price is required</span>
+              )}
+              <div className="space-x-2">
+                <label htmlFor="noofbeds">No of beds</label>
+                <input
+                  {...register("beds", { required: true })}
+                  className="rounded-md"
+                  id="noofbeds"
+                />
+              </div>
+              {errors.beds && (
+                <span className=" text-red-500">
+                  Number of beds is required
+                </span>
+              )}
+              <div className="space-x-2">
+                <label htmlForor="noofbathrooms">No of bathrooms</label>
+                <input
+                  {...register("bathrooms", { required: true })}
+                  className="rounded-md"
+                  id="noofbathrooms"
+                />
+              </div>
+              {errors.bathrooms && (
+                <span className="text-red-500">
+                  Number of bathrooms is required
+                </span>
+              )}
+              <div className="space-x-2">
+                <label htmlFor="proplength">Length</label>{" "}
+                <input
+                  {...register("length", { required: true })}
+                  className="rounded-md"
+                  id="proplength"
+                />
+              </div>
+              {errors.length && (
+                <span className="text-red-500">
+                  Property length is required
+                </span>
+              )}
+              <div className="space-x-2">
+                <label htmlFor="propwidth">Width</label>
+                <input
+                  {...register("width", { required: true })}
+                  className="rounded-md"
+                  id="propwidth"
+                />
+              </div>
+              {errors.width && (
+                <span className="text-red-500">Property width is required</span>
+              )}
+              <div className="space-x-2">
+                <label htmlFor="propaddress">Address</label>
+                <input
+                  {...register("address", { required: true })}
+                  className="rounded-md"
+                  id="propaddress"
+                />
+              </div>
+
+              {errors.address && (
+                <span className="text-red-500">
+                  Property address is required
+                </span>
+              )}
+              <div className="space-x-2">
+                <select {...register("location", { required: true })}>
+                  <option value="">--Select Location--</option>
+                  <option value="New York, USA">New York, USA</option>
+                  <option value="Los Angeles, USA">Los Angeles, USA</option>
+                  <option value="Miami, USA">Miami, USA</option>
+                </select>
+              </div>
+              {errors.location && (
+                <span className="text-red-500">Location is required</span>
+              )}
+              <div className="spacex-2">
+                <label htmlFor="ImageFile">Property Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  {...register("imgFile", { required: true })}
+                  id="ImageFile"
+                />
+              </div>
+              {errors.imgFile && (
+                <span className="text-red-500">Property Image is required</span>
+              )}
+
+              <input
+                type="submit"
+                className="border-2 border-violet-600 hover:bg-violet-600 hover:text-white cursor-pointer rounded-md"
+              />
+            </form>
           </div>
         </div>
       </div>
