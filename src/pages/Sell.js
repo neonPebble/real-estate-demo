@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import Navbar from "../components/Navbar";
+import { useState } from "react";
+import Card from "../components/Card";
 
 export default function Sell() {
   const {
@@ -8,8 +10,20 @@ export default function Sell() {
     formState: { errors },
   } = useForm();
 
+  const [propList, setpropList] = useState([]);
+
   const onSubmit = (data) => {
     console.log(data);
+    const imageReader = new FileReader();
+    imageReader.addEventListener("load", () => {
+      data.image = imageReader.result;
+      setpropList((prevList) => {
+        let newList = prevList.slice();
+        newList.push(data);
+        return newList;
+      });
+    });
+    imageReader.readAsDataURL(data.image[0]);
   };
 
   return (
@@ -18,7 +32,11 @@ export default function Sell() {
         <Navbar />
         <div>
           <h1>Your Products</h1>
-          <div className="py-[5vw] px-[4vw] gap-5 flex flex-wrap box-border"></div>
+          <div className="py-[5vw] px-[4vw] gap-5 flex flex-wrap box-border">
+            {propList.map((element) => {
+              return <Card propObj={element} key={element["Name"]} />;
+            })}
+          </div>
           <div className="flex justify-center">
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -72,7 +90,7 @@ export default function Sell() {
                 </span>
               )}
               <div className="space-x-2">
-                <label htmlForor="noofbathrooms">No of bathrooms</label>
+                <label htmlFor="noofbathrooms">No of bathrooms</label>
                 <input
                   {...register("bathrooms", { required: true })}
                   className="rounded-md"
@@ -138,11 +156,11 @@ export default function Sell() {
                 <input
                   type="file"
                   accept="image/*"
-                  {...register("imgFile", { required: true })}
+                  {...register("image", { required: true })}
                   id="ImageFile"
                 />
               </div>
-              {errors.imgFile && (
+              {errors.image && (
                 <span className="text-red-500">Property Image is required</span>
               )}
 
