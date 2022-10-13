@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
-import Card from "../components/Card";
+import { useState, React } from "react";
+import Sellcard from "../components/Sellcard";
 
 export default function Sell() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const [propList, setpropList] = useState(
@@ -23,6 +24,7 @@ export default function Sell() {
       setpropList((prevList) => {
         let newList = prevList.slice();
         newList.push(data);
+        reset();
         localStorage.setItem("dataList", JSON.stringify(newList));
         return newList;
       });
@@ -36,11 +38,19 @@ export default function Sell() {
         <Navbar />
         <div>
           <h1>Your Products</h1>
+
           <div className="py-[5vw] px-[4vw] gap-5 flex flex-wrap box-border">
             {propList.map((element) => {
-              return <Card propObj={element} key={element["Name"]} />;
+              return (
+                <Sellcard
+                  propObj={element}
+                  key={element["Name"]}
+                  setList={setpropList}
+                />
+              );
             })}
           </div>
+
           <div className="flex justify-center pb-5 box-border">
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -53,7 +63,7 @@ export default function Sell() {
                 <input
                   {...register("Name", { required: true })}
                   id="name"
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                 />
               </div>
               {errors["Name"] && (
