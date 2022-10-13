@@ -5,11 +5,6 @@ export default function Card(props) {
   const ImgSrc = propObj.image;
   return (
     <div className="rounded-md shadow-lg w-[240px] box-border flex flex-col">
-      {/* <img
-        src={ImgSrc}
-        alt={propObj.name}
-        className=" rounded-md object-cover"
-      /> */}
       <div
         className="bg-cover h-40 rounded-t-md"
         style={{ backgroundImage: `url(${ImgSrc})` }}

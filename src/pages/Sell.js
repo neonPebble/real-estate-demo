@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Navbar from "../components/Navbar";
-import { useState, React } from "react";
+import { useState, React, useRef } from "react";
 import Sellcard from "../components/Sellcard";
 
 export default function Sell() {
@@ -17,6 +17,8 @@ export default function Sell() {
       : []
   );
 
+  const formRef = useRef(null);
+
   const onSubmit = (data) => {
     const imageReader = new FileReader();
     imageReader.addEventListener("load", () => {
@@ -24,7 +26,7 @@ export default function Sell() {
       setpropList((prevList) => {
         let newList = prevList.slice();
         newList.push(data);
-        reset();
+        showHideFormHandler();
         localStorage.setItem("dataList", JSON.stringify(newList));
         return newList;
       });
@@ -32,9 +34,14 @@ export default function Sell() {
     imageReader.readAsDataURL(data.image[0]);
   };
 
+  function showHideFormHandler() {
+    formRef.current.classList.toggle("opacity-0");
+    formRef.current.classList.toggle("pointer-events-none");
+    reset();
+  }
   return (
     <div className="Sell">
-      <div className="min-h-[100vh] w-full bg-slate-100">
+      <div className="min-h-[100vh] w-full bg-slate-100 relative">
         <Navbar />
         <div>
           <h1>Your Products</h1>
@@ -49,13 +56,30 @@ export default function Sell() {
                 />
               );
             })}
+            <button
+              className="rounded-md shadow-lg w-[240px] box-border flex text-5xl bg-black/20 text-white text-center justify-center items-center min-h-[17.5rem]"
+              onClick={showHideFormHandler}
+            >
+              <span>+</span>
+            </button>
           </div>
 
-          <div className="flex justify-center pb-5 box-border">
+          <div
+            className="flex justify-center pb-5 box-border absolute h-full w-full opacity-0 left-0 top-0 overflow-auto pointer-events-none bg-black/50 items-center"
+            ref={formRef}
+          >
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col space-y-1 w-[40%]  min-w-[300px] py-2 shadow-2xl rounded-md box-border px-2 bg-white"
+              className="flex flex-col space-y-1 w-[40%]  min-w-[300px] pb-2 shadow-2xl rounded-md box-border px-2 bg-white"
             >
+              <div className="flex justify-end relative pt-8">
+                <button
+                  className="py-[0.125rem] px-1.5 bg-red-500 text-white text-xl rounded-md text-center absolute top-0 right-[-0.5rem] w-8 flex items-center justify-center"
+                  onClick={showHideFormHandler}
+                >
+                  <span>x</span>
+                </button>
+              </div>
               <div className="space-x-2 grid grid-cols-2">
                 <label htmlFor="name" className="box-border">
                   Name
