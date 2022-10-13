@@ -10,16 +10,20 @@ export default function Sell() {
     formState: { errors },
   } = useForm();
 
-  const [propList, setpropList] = useState([]);
+  const [propList, setpropList] = useState(
+    localStorage.getItem("dataList")
+      ? JSON.parse(localStorage.getItem("dataList"))
+      : []
+  );
 
   const onSubmit = (data) => {
     const imageReader = new FileReader();
     imageReader.addEventListener("load", () => {
       data.image = imageReader.result;
-      console.log(data.image);
       setpropList((prevList) => {
         let newList = prevList.slice();
         newList.push(data);
+        localStorage.setItem("dataList", JSON.stringify(newList));
         return newList;
       });
     });
@@ -37,13 +41,15 @@ export default function Sell() {
               return <Card propObj={element} key={element["Name"]} />;
             })}
           </div>
-          <div className="flex justify-center pb-5">
+          <div className="flex justify-center pb-5 box-border">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col space-y-1 w-30 py-2 shadow-lg"
+              className="flex flex-col space-y-1 w-[40%]  min-w-[300px] py-2 shadow-2xl rounded-md box-border px-2 bg-white"
             >
-              <div className="space-x-2">
-                <label htmlFor="name">Name</label>
+              <div className="space-x-2 grid grid-cols-2">
+                <label htmlFor="name" className="box-border">
+                  Name
+                </label>
                 <input
                   {...register("Name", { required: true })}
                   id="name"
@@ -53,8 +59,12 @@ export default function Sell() {
               {errors["Name"] && (
                 <span className="text-red-500">Property name is required</span>
               )}
-              <div className="space-x-2">
-                <select {...register("type", { required: true })}>
+              <div className="space-x-2 grid grid-cols-2">
+                <div />
+                <select
+                  {...register("type", { required: true })}
+                  className="border-2 rounded-md"
+                >
                   <option value="">--Choose Property Type--</option>
                   <option value="Houses">Houses</option>
                   <option value="Condos">Condos</option>
@@ -65,24 +75,24 @@ export default function Sell() {
               {errors.type && (
                 <span className="text-red-500">Property type is required</span>
               )}
-              <div className="space-x-2">
-                <label htmlFor="price">Price</label>
+              <div className="grid grid-cols-2 space-x-2">
+                <label htmlFor="priceno">Price</label>
                 <input
                   type="Number"
                   {...register("price", { required: true })}
-                  id="price"
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
+                  id="priceno"
                 />
               </div>
               {errors.price && (
                 <span className="text-red-500">Property price is required</span>
               )}
-              <div className="space-x-2">
+              <div className="space-x-2 grid grid-cols-2">
                 <label htmlFor="noofbeds">No of beds</label>
                 <input
                   type="Number"
                   {...register("beds", { required: true })}
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                   id="noofbeds"
                 />
               </div>
@@ -91,12 +101,12 @@ export default function Sell() {
                   Number of beds is required
                 </span>
               )}
-              <div className="space-x-2">
+              <div className="space-x-2 grid grid-cols-2">
                 <label htmlFor="noofbathrooms">No of bathrooms</label>
                 <input
                   type="Number"
                   {...register("bathrooms", { required: true })}
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                   id="noofbathrooms"
                 />
               </div>
@@ -105,12 +115,12 @@ export default function Sell() {
                   Number of bathrooms is required
                 </span>
               )}
-              <div className="space-x-2">
-                <label htmlFor="proplength">Length</label>{" "}
+              <div className="space-x-2 grid grid-cols-2">
+                <label htmlFor="proplength">Length</label>
                 <input
                   type="Number"
                   {...register("length", { required: true })}
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                   id="proplength"
                 />
               </div>
@@ -119,23 +129,23 @@ export default function Sell() {
                   Property length is required
                 </span>
               )}
-              <div className="space-x-2">
+              <div className="space-x-2 grid grid-cols-2">
                 <label htmlFor="propwidth">Width</label>
                 <input
                   type="Number"
                   {...register("width", { required: true })}
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                   id="propwidth"
                 />
               </div>
               {errors.width && (
                 <span className="text-red-500">Property width is required</span>
               )}
-              <div className="space-x-2">
+              <div className="space-x-2 grid grid-cols-2">
                 <label htmlFor="propaddress">Address</label>
                 <input
                   {...register("address", { required: true })}
-                  className="rounded-md text-center px-1"
+                  className="rounded-md text-center px-1 border-2"
                   id="propaddress"
                 />
               </div>
@@ -145,8 +155,12 @@ export default function Sell() {
                   Property address is required
                 </span>
               )}
-              <div className="space-x-2">
-                <select {...register("location", { required: true })}>
+              <div className="space-x-2 grid grid-cols-2">
+                <div />
+                <select
+                  {...register("location", { required: true })}
+                  className="border-2 rounded-md text-center"
+                >
                   <option value="">--Select Location--</option>
                   <option value="New York, USA">New York, USA</option>
                   <option value="Los Angeles, USA">Los Angeles, USA</option>
@@ -156,7 +170,7 @@ export default function Sell() {
               {errors.location && (
                 <span className="text-red-500">Location is required</span>
               )}
-              <div className="spacex-2 flex justify-center">
+              <div className=" space-x-2 grid grid-cols-2">
                 <label htmlFor="ImageFile">Property Image</label>
                 <div>
                   <input
