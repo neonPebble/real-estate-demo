@@ -3,6 +3,9 @@ import Navbar from "../components/Navbar";
 import { useState, React, useRef } from "react";
 import Sellcard from "../components/Sellcard";
 
+// TODO: Convert the form part to separate component.
+// TODO: Fix the form part when errors are there.
+
 export default function Sell() {
   const {
     register,

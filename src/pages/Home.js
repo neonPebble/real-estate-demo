@@ -2,6 +2,7 @@ import "../App.css";
 import dataset from "../assets/data.js";
 import React, { useState } from "react";
 import Card from "../components/Card";
+import Navbar from "../components/Navbar";
 // import Calendar from 'react-calendar';
 
 function Home() {
@@ -56,35 +57,8 @@ function Home() {
   return (
     <div className="Home">
       <div className=" w-full min-h-[100vh] bg-slate-100">
-        <div className="px-6 py-2 flex place-content-between">
-          <div className=" space-x-3 flex">
-            <div className="px-2 py-1 text-center text-xl mr-4">Estatery</div>
-            <div className="px-2 py-1 text-center text-violet-900 bg-violet-400">
-              Rent
-            </div>
-            <div className="px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm">
-              Buy
-            </div>
-            <div className="px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm">
-              <a href="/sell">Sell</a>
-            </div>
-            <div className="px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm">
-              Manage Property
-            </div>
-            <div className="px-2 py-1 text-center hover:text-violet-900 hover:bg-violet-400 rounded-sm">
-              Resources
-            </div>
-          </div>
-          <div className=" flex justify-center items-center space-x-2">
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
-              Login
-            </button>
-            <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
-              Sign Up
-            </button>
-          </div>
-        </div>
-        <div className="mx-5 my-4 space-x-2 py-1">
+        <Navbar />
+        <div className="mx-5 mb-4 space-x-2 py-1 mt-8">
           <select value={type.value} onChange={handleTypeChange}>
             <option value="any">Any</option>
             <option value="Houses">Houses</option>
