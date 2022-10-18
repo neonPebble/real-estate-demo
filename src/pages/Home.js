@@ -54,9 +54,10 @@ function Home() {
   function handlePriceChange(event) {
     setPrice({ value: event.target.value });
   }
+
   return (
     <div className="Home">
-      <div className=" w-full min-h-[100vh] bg-slate-100">
+      <div className="w-full min-h-[100vh] bg-slate-100">
         <Navbar />
         <div className="mx-5 mb-4 space-x-2 py-1 mt-8">
           <select value={type.value} onChange={handleTypeChange}>

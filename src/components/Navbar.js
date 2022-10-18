@@ -1,4 +1,7 @@
 export default function Navbar() {
+  function signInHandler() {
+    window.location.href = "/login";
+  }
   return (
     <div className="px-6 py-2 flex place-content-between">
       <div className=" space-x-3 flex">
@@ -50,10 +53,16 @@ export default function Navbar() {
         </div>
       </div>
       <div className=" flex justify-center items-center space-x-2">
-        <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
+        <button
+          className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2"
+          onClick={signInHandler}
+        >
           Login
         </button>
-        <button className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2">
+        <button
+          className="text-center px-2 py-1 hover:bg-violet-800 hover:text-white rounded-md shadow-sm border-violet-400 border-2"
+          onClick={signInHandler}
+        >
           Sign Up
         </button>
       </div>
