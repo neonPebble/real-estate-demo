@@ -11,7 +11,13 @@ export default function Login() {
           "898210389645-po609nrob379rmvihsapg6q9avfh4knv.apps.googleusercontent.com",
         callback: handleCredentialResponse,
       });
-      window.google.accounts.id.prompt();
+      window.google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          // The script sets some cookie to prevent popup if the user ignores the google signin prompt once. so you need to clear the cookie or ask user to clear the cookie.
+          document.cookie =
+            "g_state=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        }
+      });
     } catch {}
   }
   return (
